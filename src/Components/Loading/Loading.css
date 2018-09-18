@@ -1,0 +1,12 @@
+.outerloading {
+    min-height: 90vh;
+    background: #302F3D;
+    overflow: hidden;
+    display: grid;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.loadinglogo {
+    
+}

@@ -1,0 +1,83 @@
+.outercontainercase{
+    min-height: 90vh;
+    background: #302F3D;
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: 
+    "slotmachine"
+    "casetop"
+    "casebottom";
+    justify-content: center;
+}
+
+.casedetails{
+    color:  rgba(255,255,255,.7);
+}
+
+.casetop {
+    grid-area: casetop;
+    justify-self: center;
+}
+
+.casebottom{
+    width: 100vw;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    grid-area: casebottom;
+    justify-self: center;
+}
+
+.caseimage{
+    display: grid;
+    justify-content: center;
+}
+
+.caseimage img {
+    width: 60%;
+    height: auto;
+    justify-self: center;
+}
+
+.casename{
+    display: grid;
+    justify-content: center;
+}
+
+.casename h1{
+    font-size: 28px;
+}
+.casecontentscontainer{
+
+}
+
+.casecontentscontainer h1 {
+    font-size: 24px;
+}
+
+.contentlist {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 350px);
+}
+
+.contentimage img {
+    width: 200px;
+    height: 150px;
+}
+
+.contentitem{
+    background: #111019;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+@media screen and (max-width: 778px) {
+    .contentitem{
+        
+        
+    }
+}

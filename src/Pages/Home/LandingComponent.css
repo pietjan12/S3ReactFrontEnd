@@ -1,0 +1,128 @@
+@font-face {
+    font-family: Magna;
+    src: url("../../img/Fonts/Magna-BlackCondensed.ttf");
+}
+
+.intro {
+    height: 100vh;
+    min-height: 775px;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: url(../../img/Home/background.jpg);
+    background-size: cover;
+    display: grid;
+    grid-template-areas: 
+    "info info info" 
+    "info info info" 
+    "case alia alia";
+    grid-row-gap: 2em;
+
+}
+
+.info {
+    height: 10px;
+    margin: auto;
+    grid-area: info;
+    align-self: center;
+    text-align: center;
+}
+
+.info h1 {
+    font-family: Magna;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFF;
+    text-shadow: 0 3px 0 rgba(0,0,0,.5);
+    font-size: 100px;
+    margin-bottom: 25px;
+    text-transform: none;
+    letter-spacing: .8ch;
+}
+
+.info h2 {
+    color: rgba(255,255,255,.4);
+}
+
+.info h2 i {
+    color: #fff;
+}
+
+.info h3 {
+    color: rgba(255,255,255,.4);
+}
+
+.picture {
+    grid-area: alia;
+    margin-top: auto;
+}
+
+.picture img {
+    width: 500px;
+    height: auto;
+    float: right;
+}
+
+.picture2{
+    grid-area: case;
+    margin-top: auto;
+}
+
+.picture2 img {
+    width: 300px;
+    height: auto;
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-height: 1000px) {
+    .picture img{
+        width: 400px;
+    }
+
+    .picture2 img {
+        width: 400px;
+    }
+}
+
+
+@media screen and (max-height: 800px) {
+    .picture img{
+        width: 200px;
+    }
+
+    .picture2 img {
+        width: 200px;
+    }
+}
+
+
+@media screen and (max-height: 700px) {
+    .picture{
+        display: none;
+    }
+
+    .picture2 {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .picture img{
+        width: 300px;
+    }
+
+    .picture2 img {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 684px) {
+    .picture {
+        display: none;
+    }
+
+    .picture2 {
+        display: none;
+    }
+}

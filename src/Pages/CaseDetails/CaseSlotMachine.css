@@ -1,0 +1,7 @@
+.slotmachinecontainer{
+    grid-area: slotmachine;
+    height: 10vh;
+    margin-top: 150px;
+    color: #fff;
+    justify-self: center;
+}

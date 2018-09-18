@@ -1,0 +1,14 @@
+.outercontainer{
+    min-height: 90vh;
+    background: #302F3D;
+    overflow: hidden;
+}
+
+.hotcases {
+    color:  rgba(255,255,255,.7)
+}
+
+.hotcases h1 {
+    margin-top: 50px;
+    margin-left: 50px;
+}

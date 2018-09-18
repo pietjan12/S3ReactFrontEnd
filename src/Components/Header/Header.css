@@ -1,0 +1,36 @@
+.navigation {
+    width: 100%;
+    position: fixed;
+    transition: 300ms background-color;
+    z-index: 1000;
+}
+
+.navigation a {
+    display: block;
+    padding: 21px 15px;
+    font-family: sans-serif;
+    float: left;
+    color: black;
+    text-decoration: none
+}
+
+container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo {
+    width: 75px;
+    margin-right: 50px;
+}
+
+.nav-bg {
+    background: #111019;
+}
+
+.uppercase{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+}

@@ -1,0 +1,26 @@
+.avatar {
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .5);
+    font-weight: 700;
+}
+
+.avatar div {
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.avatar div img {
+    max-width: 100%;
+}
+
+.avatar span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
