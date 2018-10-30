@@ -9,7 +9,7 @@ class Avatar extends Component {
         return (
         <div className="avatar">
             <div>
-                <Link to="/Account">
+                <Link to="/Login">
                 <img src={AvatarImage} alt="avatar" />
                 </Link>
             </div>

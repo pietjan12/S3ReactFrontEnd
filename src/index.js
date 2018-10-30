@@ -11,6 +11,7 @@ import store from './store'
 import Home from 'Pages/Home';
 import Cases from 'Pages/Cases';
 import Account from 'Pages/Account';
+import Login from 'Pages/Login';
 import CaseDetails from 'Pages/CaseDetails';
 
 ReactDOM.render(
@@ -19,6 +20,7 @@ ReactDOM.render(
             <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/Account" component={Account} />
+            <Route exact path="/Login" component={Login} />
             <Route exact path="/Cases" component={Cases} />
             <Route exact path="/Case/:CaseID" component={CaseDetails} />
             </Switch>
