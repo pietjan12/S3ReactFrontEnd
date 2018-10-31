@@ -1,14 +1,24 @@
 
 .innerlogincontainer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-gap: 8ch;
-    align-items: center;
-    align-content: center;
     margin-top: 50px;
+}
+
+.innerlogincontainer input {
+    color: #fff !important;
 }
 
 .innerloginitem{
     text-align: center;
     margin: 5px !important;
+}
+
+.userinput {
+    margin-bottom: 10px;
+}
+
+.noinput{
+    margin-bottom: 15px;
 }

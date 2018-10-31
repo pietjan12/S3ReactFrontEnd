@@ -3,17 +3,13 @@ import { bankUrl, inventoryUrl } from '../serverconstants'
 import { setToken, apiCall } from '../../Services/api';
 
 //user state
-const USER_STATE = {
-    user : "",
-    isAuthenticated : false
-};
 
 export const setAuthorizationToken = (token) => {
     setToken(token);
 };
 
 //reducer
-export default (state = USER_STATE, action) => {
+export default (state = [], action) => {
     switch (action.type) {
       case REGISTER:
         return action.payload;
@@ -67,11 +63,12 @@ export const fetchUser = (username) => dispatch => {
             .then((req) => {
                 dispatch({
                     type: FETCH_USER,
-                    payload: req.data
+                    payload: req
                 })
                 resolve(); //API call succeeded
             })
             .catch(e => {
+                console.log(e);
                 reject(); //fail!
             })
     })

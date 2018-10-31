@@ -6,20 +6,8 @@ import LogoImage from 'img/templogo.png';
 import './Header/Header.css'
 
 import { connect } from 'react-redux';
-import { logoutUser } from 'Modules/Account/head';
 
 class Header extends Component {
-    constructor() {
-        super();
-        this.logout = this.logout.bind(this);
-    }
-
-    logout() {
-        console.log("logging out");
-        this.props.logoutUser();
-        console.log(localStorage.jwtToken);
-    }
-
     render() {
         const {user} = this.props;
         return (
@@ -41,7 +29,7 @@ class Header extends Component {
                             <Link to="/Upgrade" className="nav-link uppercase">Upgrade</Link>
                         </div>
                     </ul>
-
+                        {console.log("header user : " + user.user)}
                     {   
                         user.isAuthenticated ? 
                         <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
@@ -67,5 +55,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { logoutUser }
+    null
 )(Header);

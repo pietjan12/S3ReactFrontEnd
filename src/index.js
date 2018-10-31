@@ -14,12 +14,16 @@ import Account from 'Pages/Account';
 import Login from 'Pages/Login';
 import CaseDetails from 'Pages/CaseDetails';
 
-import { setAuthorizationToken } from './Modules/Account/head';
 import { LOGIN } from './Modules/types';
 import jwtDecode from 'jwt-decode';
 
+import { setAuthorizationToken } from './Modules/Account/head'
+
 //Token controleren
 if (localStorage.jwtToken) {
+    //restore axios default header sessions
+    setAuthorizationToken(localStorage.jwtToken);
+    
     // prevent jwtToken tampering
     try {
         store.dispatch({
