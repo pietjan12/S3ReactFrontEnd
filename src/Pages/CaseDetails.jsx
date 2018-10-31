@@ -82,7 +82,7 @@ class CaseDetails extends Component {
 
 const mapStateToProps = state => {
     return {
-        chosencase: state.cases.head
+        chosencase: state.cases
     };
 }
 

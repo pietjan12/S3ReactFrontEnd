@@ -38,12 +38,12 @@ class Login extends Component {
         e.preventDefault();
 
         const { username, password } = this.state;
-        this.props.loginUser(username, password);
+        this.props.loginUser(username, password).then(() => {
+            this.props.history.push('/');
+        });
     }
 
     render() {
-        const { loggingIn } = this.props;
-        console.log(loggingIn);
         return (
         <div>
             <Header/>
@@ -85,13 +85,7 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        loggingIn: state.account.head
-    };
-}
-
 export default connect(
-    mapStateToProps,
+    null,
     { loginUser }
 )(Login);

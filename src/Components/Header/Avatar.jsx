@@ -9,11 +9,11 @@ class Avatar extends Component {
         return (
         <div className="avatar">
             <div>
-                <Link to="/Login">
+                <Link to="/Account">
                 <img src={AvatarImage} alt="avatar" />
                 </Link>
             </div>
-            <span>Name</span>
+            <span>{this.props.name}</span>
         </div>
         );
     }

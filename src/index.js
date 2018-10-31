@@ -14,6 +14,26 @@ import Account from 'Pages/Account';
 import Login from 'Pages/Login';
 import CaseDetails from 'Pages/CaseDetails';
 
+import { setAuthorizationToken } from './Modules/Account/head';
+import { LOGIN } from './Modules/types';
+import jwtDecode from 'jwt-decode';
+
+//Token controleren
+if (localStorage.jwtToken) {
+    // prevent jwtToken tampering
+    try {
+        store.dispatch({
+            type: LOGIN,
+            payload : jwtDecode(localStorage.jwtToken)["sub"]
+        });
+    } catch (err) {
+        store.dispatch({
+            type: LOGIN,
+            payload: ""
+        });
+    }
+}
+
 ReactDOM.render(
     <Router>
         <Provider store={store}>

@@ -2,4 +2,11 @@
     min-height: 90vh;
     background: #302F3D;
     overflow: hidden;
+    color: #fff;
+}
+
+.myaccount {
+    color: rgba(255, 255, 255, .7);
+    margin-top: 50px;
+    margin-left: 50px;
 }

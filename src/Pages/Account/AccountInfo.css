@@ -1,0 +1,14 @@
+
+.innerlogincontainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 8ch;
+    align-items: center;
+    align-content: center;
+    margin-top: 50px;
+}
+
+.innerloginitem{
+    text-align: center;
+    margin: 5px !important;
+}

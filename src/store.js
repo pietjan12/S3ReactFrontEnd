@@ -6,12 +6,8 @@ import casesHead from 'Modules/Cases/head';
 import accountHead from 'Modules/Account/head';
 
 const rootReducer = combineReducers({
-  cases: combineReducers({
-    head: casesHead
-  }),
-  account: combineReducers({
-    head: accountHead
-  })
+  cases: casesHead,
+  account: accountHead
 });
 
 const store = createStore(

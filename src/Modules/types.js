@@ -6,3 +6,4 @@ export const FETCH_CASE_BY_ID = 'FETCH_CASE_BY_ID';
 //ACCOUNT CALLS
 export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
+export const FETCH_USER = "FETCH_USER";

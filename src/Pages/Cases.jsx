@@ -32,7 +32,7 @@ class Cases extends Component {
 
 const mapStateToProps = state => {
     return {
-        caselist: state.cases.head
+        caselist: state.cases
     };
 }
 
