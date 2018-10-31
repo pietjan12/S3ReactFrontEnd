@@ -5,7 +5,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 import { connect } from 'react-redux';
-import { fetchUser, logoutUser } from 'Modules/Account/head';
+import { fetchUser } from 'Modules/Account/head';
+import { logoutUser } from 'Modules/Authentication/head';
+
 
 class AccountInfo extends Component {
     
@@ -15,7 +17,7 @@ class AccountInfo extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchUser(this.props.user.user);
+        this.props.fetchUser(this.props.account.user);
     }
 
     logout() {
@@ -25,7 +27,6 @@ class AccountInfo extends Component {
 
     render() {
         const {user} = this.props;
-        console.log(user);
         return (
             <div className="innerlogincontainer">
                     <div className="innerloginitem">
@@ -96,7 +97,8 @@ class AccountInfo extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.account
+        user: state.users,
+        account: state.account
     };
 }
 

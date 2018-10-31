@@ -17,7 +17,7 @@ import CaseDetails from 'Pages/CaseDetails';
 import { LOGIN } from './Modules/types';
 import jwtDecode from 'jwt-decode';
 
-import { setAuthorizationToken } from './Modules/Account/head'
+import { setAuthorizationToken } from './Modules/Authentication/head'
 
 //Token controleren
 if (localStorage.jwtToken) {

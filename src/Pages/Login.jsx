@@ -9,7 +9,7 @@ import Lock from '@material-ui/icons/Lock';
 import VpnKey from '@material-ui/icons/VpnKey';
 
 import { connect } from 'react-redux';
-import { loginUser } from 'Modules/Account/head';
+import { loginUser } from 'Modules/Authentication/head';
 
 class Login extends Component {
     constructor() {
@@ -32,7 +32,6 @@ class Login extends Component {
     handlePassChange(event) {
         this.setState({password: event.target.value});
     }
-
 
     onLogin(e) {
         e.preventDefault();

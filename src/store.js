@@ -3,11 +3,13 @@ import {combineReducers} from 'redux'
 import thunk from 'redux-thunk';
 
 import casesHead from 'Modules/Cases/head';
-import accountHead from 'Modules/Account/head';
+import authorizationHead from 'Modules/Authentication/head';
+import usersHead from 'Modules/Account/head';
 
 const rootReducer = combineReducers({
   cases: casesHead,
-  account: accountHead
+  account: authorizationHead,
+  users: usersHead
 });
 
 const store = createStore(
