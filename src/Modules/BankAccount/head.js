@@ -1,5 +1,6 @@
 import {LINK_TO_BANKACCOUNT, CREATE_BANKACCOUNT} from '../types.js'
 import { apiCall } from '../../Services/api';
+import { bankUrl } from '../serverconstants'
 
 //reducer
 export default (state = [], action) => {
@@ -28,3 +29,19 @@ export const registerBankAccount = (accountname) => dispatch => {
             })
     })
 };
+
+export const linkToMyBankAccount = (otherAccountID, bankAccountID) => dispatch => {
+    return new Promise((resolve, reject) => {
+        return apiCall('post', `${bankUrl}/bank/link`, {otherAccountID, bankAccountID})
+            .then((req) => {
+                dispatch({
+                    type: LINK_TO_BANKACCOUNT,
+                    payload: req
+                });
+                resolve();
+            })
+            .catch(e => {
+                reject(); //fail!
+            })
+    })
+}

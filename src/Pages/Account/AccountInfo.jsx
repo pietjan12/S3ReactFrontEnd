@@ -9,6 +9,7 @@ import {Form, FormInput } from 'react-chloroform';
 import { connect } from 'react-redux';
 import { fetchUser } from 'Modules/Account/head';
 import { logoutUser } from 'Modules/Authentication/head';
+import { registerBankAccount, linkToMyBankAccount } from 'Modules/BankAccount/head';
 
 class AccountInfo extends Component {
     
@@ -21,6 +22,15 @@ class AccountInfo extends Component {
             email : "",
             newpass: "",
             confirmnewpass : ""
+        }
+
+        this.createBankAccountState = {
+            bankName : "your desired name"
+        }
+
+        this.linkBankAccountState = {
+            otherUserName : "Account Name To Link",
+            bankAccount : "TODO"
         }
 
         this.logout = this.logout.bind(this);
@@ -106,9 +116,36 @@ class AccountInfo extends Component {
                                 <Button type="submit" variant="contained" color="secondary">Change email</Button>
                             </Form>
                         </div>
-                    <div className="innerloginitem">
-                        <button onClick={this.logout}> Logout </button>
-                    </div>
+                        <div className="innerloginitem">
+                            <h5> create bank account </h5>
+                            <Form initialState={this.createBankAccountState} onSubmit={this.createBankAccount}>
+                                <div className="userinput">
+                                    <FormInput
+                                        model="bankName"
+                                        id="bankName"
+                                    />
+                                </div>
+                                <Button type="submit" variant="contained" color="secondary"> Create Bank Account</Button>
+                            </Form>
+                        </div>
+                        <div className="innerloginitem">
+                            <h5> link bank account </h5>
+                            <Form initialState={this.linkBankAccountState} onSubmit={this.linkToBankAccount}>
+                                <div className="userinput">
+                                    <FormInput
+                                        model="otherUserName"
+                                        id="otherUserName"
+                                    />
+                                </div>
+                                <div className="userinput">
+                                    {/* TODO : LIST OFZO MAKEN EN VULLEN MET ALLE BANK ACCOUNTS VAN ACCOUNT IN DROPDOWN, ZO KAN IK METEEN ID MEEGEVEN */}
+                                </div>
+                                <Button type="submit" variant="contained" color="secondary"> Link Bank Account</Button>
+                            </Form>
+                        </div>
+                        <div className="innerloginitem">
+                            <Button variant="contained" color="secondary" onClick={this.logout}> Logout </Button>
+                        </div>
                 </div>
             ); 
         }

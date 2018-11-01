@@ -66,7 +66,7 @@
 }
 
 /* Media queries */
-@media screen and (max-width: 778px) {
+@media screen and (max-width: 761px) {
     .casecontainer{
         width: calc(100vw - 60px);
         
