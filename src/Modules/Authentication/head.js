@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN } from '../types';
+import { LOGIN } from '../types';
 import { setToken, apiCall } from '../../Services/api';
 import { bankUrl } from '../serverconstants'
 
@@ -15,8 +15,6 @@ export const setAuthorizationToken = (token) => {
 //reducer
 export default (state = USER_STATE, action) => {
     switch (action.type) {
-      case REGISTER:
-        return action.payload;
       case LOGIN:
         return {
             isAuthenticated : !!Object.keys(action.payload).length,
@@ -25,11 +23,6 @@ export default (state = USER_STATE, action) => {
       default:
         return state;
     }
-};
-
-//actions
-export const registerUser = (username, password, email, phonenr) => dispatch => {
-    //TODO MAKEN
 };
 
 export const loginUser = (username, password) => dispatch => {
