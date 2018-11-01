@@ -96,7 +96,7 @@ input[type=password]:focus {
 }
 
 input[type=email] {
-    color: #949494;
+    color: #fff;
     margin: 0;
     background-color: #373b3d;
     border: 1px solid #373b3d;
