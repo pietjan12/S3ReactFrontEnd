@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './Components/PrivateRoute';
 import {Provider} from 'react-redux'
 
 import './css/index.css';
@@ -44,7 +45,7 @@ ReactDOM.render(
         <Provider store={store}>
             <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/Account" component={Account} />
+            <PrivateRoute exact path="/Account" component={Account}/>
             <Route exact path="/Login" component={Login} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/Cases" component={Cases} />

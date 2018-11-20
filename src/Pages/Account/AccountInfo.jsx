@@ -154,6 +154,7 @@ class AccountInfo extends Component {
 
 
 const mapStateToProps = state => {
+    //TODO : rename state.account to state.auth.
     return {
         user: state.users,
         account: state.account
