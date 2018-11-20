@@ -5,6 +5,7 @@ import ReactLoading from 'react-loading';
 import './AccountInfo.css';
 import Button from '@material-ui/core/Button';
 import {Form, FormInput } from 'react-chloroform';
+import Inventory from './Inventory'
 
 import { connect } from 'react-redux';
 import { fetchUser } from 'Modules/Account/head';
@@ -48,7 +49,16 @@ class AccountInfo extends Component {
         console.log(model);
     }
 
+    createBankAccount() {
+
+    }
+
+    linkToBankAccount() {
+
+    }
+    
     componentWillMount() {
+        //fetch user details by username stored in authentication.
         this.props.fetchUser(this.props.account.user);
     }
 
@@ -70,9 +80,10 @@ class AccountInfo extends Component {
             //update form state with redux values. Waarom zuigt react zo hard met forms maken (╯°□°）╯︵ ┻━┻
             this.formState.username = user.username;
             this.formState.email = user.email;
-
+            
             return (
                 <div className="innerlogincontainer">
+                        <Inventory accountid = {user.id} />
                         <div className="innerloginitem">
                             <h5>username</h5>
                             <Form initialState={this.formState} onSubmit={this.changeUsername}>
