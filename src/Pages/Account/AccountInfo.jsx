@@ -25,15 +25,6 @@ class AccountInfo extends Component {
             confirmnewpass : ""
         }
 
-        this.createBankAccountState = {
-            bankName : "your desired name"
-        }
-
-        this.linkBankAccountState = {
-            otherUserName : "Account Name To Link",
-            bankAccount : "TODO"
-        }
-
         this.logout = this.logout.bind(this);
     }
 
@@ -47,14 +38,6 @@ class AccountInfo extends Component {
 
     changePass(model) {
         console.log(model);
-    }
-
-    createBankAccount() {
-
-    }
-
-    linkToBankAccount() {
-
     }
     
     componentWillMount() {

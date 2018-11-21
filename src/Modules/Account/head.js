@@ -20,7 +20,7 @@ export default (state = [], action) => {
 //actions
 export const registerUser = (username, password, email, phonenr) => dispatch => {
     return new Promise((resolve, reject) => {
-        return apiCall('post', `${bankUrl}/account/add`, {username, password, email, phonenr})
+        return apiCall('post', `${bankUrl}/accounts`, {username, password, email, phonenr})
             .then((req) => {
                 dispatch({
                     type: REGISTER,
@@ -38,7 +38,7 @@ export const registerUser = (username, password, email, phonenr) => dispatch => 
 
 export const fetchUser = (username) => dispatch => {
     return new Promise((resolve, reject) => {
-        return apiCall('GET', `${bankUrl}/account/${username}`)
+        return apiCall('GET', `${bankUrl}/accounts/${username}`)
             .then((req) => {
                 dispatch({
                     type: FETCH_USER,
