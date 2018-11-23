@@ -53,6 +53,7 @@ function CustomInput({ ...props }) {
         </InputLabel>
       ) : null}
       <Input
+        className="custominputview"
         classes={{
           root: marginTop,
           disabled: classes.disabled,

@@ -4,7 +4,6 @@ import ReactLoading from 'react-loading';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import GridItem from "Components/Grid/GridItem.jsx";
 import GridContainer from "Components/Grid/GridContainer.jsx";
@@ -16,6 +15,9 @@ import CardAvatar from "Components/Card/CardAvatar.jsx";
 import CardBody from "Components/Card/CardBody.jsx";
 import CardFooter from "Components/Card/CardFooter.jsx";
 import avatar from "img/marc.jpg"
+
+//CUSTOM CSS
+import './UserProfile.css';
 import { Formik } from 'formik';
 
 //CALLS
@@ -46,10 +48,17 @@ class UserProfile extends Component {
   componentWillMount() {
     //fetch user details by username stored in authentication.
     this.props.fetchUser(this.props.account.user);
+    this.logout = this.logout.bind(this);
   }
 
-  updateProfile() {
+  updateProfile(values) {
+     console.log(values);
+  }
 
+  logout() {
+    console.log(this.props);
+    this.props.logoutUser();
+    this.props.history.push("/");
   }
 
   render() {
@@ -64,14 +73,18 @@ class UserProfile extends Component {
       );
     } else {
       return (
-        <div>
+        <div className="containerupdateprofile">
           <Formik 
             initialValues ={{ username : user.username, email : user.email, newpass: "", confirmnewpass : ""}}
+            onSubmit={(values, actions) => {
+              this.updateProfile(values);
+            }}
             render={({
               values,
-              handleChange
+              handleChange,
+              handleSubmit
             }) => ( 
-              <form onSubmit={this.updateProfile}>
+              <form onSubmit={handleSubmit}>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={8}>
                     <Card>
@@ -131,7 +144,7 @@ class UserProfile extends Component {
                         </GridContainer>
                       </CardBody>
                       <CardFooter>
-                        <Button color="primary">Update Profile</Button>
+                        <Button type="submit" color="primary">Update Profile</Button>
                       </CardFooter>
                     </Card>
                   </GridItem>
@@ -143,15 +156,10 @@ class UserProfile extends Component {
                         </a>
                       </CardAvatar>
                       <CardBody profile>
-                        <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-                        <h4 className={classes.cardTitle}>Alec Thompson</h4>
-                        <p className={classes.description}>
-                          Don't be scared of the truth because we need to restart the
-                          human foundation in truth And I love you like Kanye loves Kanye
-                          I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <Button color="primary" round>
-                          Follow
+                        <h6 className={classes.cardCategory}>{user.roles[0].name}</h6>
+                        <h4 className={classes.cardTitle}>{user.username}</h4>
+                        <Button color="primary" round onClick={this.logout}>
+                          Logout
                         </Button>
                       </CardBody>
                     </Card>
