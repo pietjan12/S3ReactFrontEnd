@@ -3,10 +3,10 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
 
+//TODO : ALS ER IETS FOUT GAAT MET GRID width : unset terugzetten in styles hieronder.
 const style = {
   grid: {
-    margin: "0 -15px !important",
-    width: "unset"
+    margin: "0 -15px !important"
   }
 };
 
