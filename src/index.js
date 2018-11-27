@@ -16,6 +16,7 @@ import Login from 'Pages/Login';
 import Register from 'Pages/Register';
 import CaseDetails from 'Pages/CaseDetails';
 import Games from 'Pages/Games';
+import HiLow from 'Pages/Games/HiLow'
 
 import { LOGIN } from './Modules/types';
 import jwtDecode from 'jwt-decode';
@@ -52,6 +53,7 @@ ReactDOM.render(
             <Route exact path="/Cases" component={Cases} />
             <Route exact path="/Case/:CaseID" component={CaseDetails} />
             <Route exact path="/Games" component={Games} />
+            <Route exact path="/Games/HighLow" component={HiLow} />
             </Switch>
         </Provider>
     </Router>,

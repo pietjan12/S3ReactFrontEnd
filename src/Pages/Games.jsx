@@ -37,7 +37,7 @@ const styles = {
       textDecoration: "none"
     },
     headerWhite: {
-        color: "#FFF",
+        color: "rgba(255,255,255,.7)",
         marginBottom: "30px"
     },
     linkWhite: {
@@ -71,7 +71,7 @@ class Games extends Component {
                                 </CardHeader>
                                 <CardBody>
                                 <Button color="primary">
-                                        <Link to="/" className={classes.linkWhite}>Play Higher/Lower</Link>
+                                        <Link to="/Games/HighLow" className={classes.linkWhite}>Play Hi/Low</Link>
                                     </Button>
                                 </CardBody>
                                 </Card>
