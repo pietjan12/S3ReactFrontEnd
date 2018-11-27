@@ -15,6 +15,7 @@ import Account from 'Pages/Account';
 import Login from 'Pages/Login';
 import Register from 'Pages/Register';
 import CaseDetails from 'Pages/CaseDetails';
+import Games from 'Pages/Games';
 
 import { LOGIN } from './Modules/types';
 import jwtDecode from 'jwt-decode';
@@ -50,6 +51,7 @@ ReactDOM.render(
             <Route exact path="/Register" component={Register} />
             <Route exact path="/Cases" component={Cases} />
             <Route exact path="/Case/:CaseID" component={CaseDetails} />
+            <Route exact path="/Games" component={Games} />
             </Switch>
         </Provider>
     </Router>,

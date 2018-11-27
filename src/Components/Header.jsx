@@ -26,7 +26,7 @@ class Header extends Component {
                             <Link to="/Cases" className="nav-link uppercase">Cases</Link>
                         </div>
                         <div className="nav-item">
-                            <Link to="/Upgrade" className="nav-link uppercase">Upgrade</Link>
+                            <Link to="/Games" className="nav-link uppercase">Games</Link>
                         </div>
                     </ul>
                         {console.log("header user : " + user.user)}
