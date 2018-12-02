@@ -89,7 +89,7 @@ class Games extends Component {
                                 </CardHeader>
                                 <CardBody>
                                     <Button color="primary">
-                                        <Link to="/" className={classes.linkWhite}>Play Roulette</Link>
+                                        <Link to="/Games/Roulette" className={classes.linkWhite}>Play Roulette</Link>
                                     </Button>
                                 </CardBody>
                                 </Card>
