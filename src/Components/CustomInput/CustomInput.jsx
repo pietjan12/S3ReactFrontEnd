@@ -82,7 +82,6 @@ CustomInput.propTypes = {
   formControlProps: PropTypes.object,
   error: PropTypes.bool,
   success: PropTypes.bool,
-  value: PropTypes.string,
   onChange: PropTypes.func
 };
 

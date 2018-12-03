@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-
-import withStyles from "@material-ui/core/styles/withStyles";
-import Header from 'Components/Header';
-import Footer from 'Components/Footer';
 import { withRouter } from "react-router";
 
+import withStyles from "@material-ui/core/styles/withStyles";
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
+import Input from '@material-ui/core/Input';
+
+import Header from 'Components/Header';
+import Footer from 'Components/Footer';
 import Card from "Components/Card/Card.jsx";
 import CardHeader from "Components/Card/CardHeader.jsx";
 import GridItem from "Components/Grid/GridItem.jsx";
+import CustomInput from "Components/CustomInput/CustomInput.jsx";
 import CardBody from "Components/Card/CardBody.jsx";
 import Button from "Components/CustomButtons/Button.jsx";
 import GridContainer from "Components/Grid/GridContainer.jsx";
 
-import { connect } from 'react-redux';
-
 import { RouletteWheel } from './Roulette.js';
 import './Roulette.css';
+import { Formik } from 'formik';
+
+import { connect } from 'react-redux';
+import { rouletteRoll } from 'Modules/Roulette/head';
+
+const numbers = [
+    "Red", "Black", "Green", 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36
+]
 
 const styles = {
     margin: {
@@ -27,20 +40,42 @@ const styles = {
     },
     textWhite: {
         color: "#fff"
+    },
+    chips: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    formControl: {
+        width: "100%" 
     }
 }
 
 class Roulette extends Component {
-    rollWheel() {
-        //make redux call for id / and if we won or not.
 
+    startGame(values) {
+        //split ints and strings choices and pass them seperately to rest API.
+        var intChoices = values.choices.filter(function(item) {
+            return (parseInt(item) == item);
+        });
+    
+        var stringChoices = values.choices.filter(function(item) {
+            return intChoices.indexOf(item) === -1;
+        });
+
+        this.props.rouletteRoll(values.bet, intChoices, stringChoices);
+        //redux call
+        //this.rollWheel(5);
+    }
+
+
+    rollWheel(id) {
         //start the visual roulette spin with id returned from redux -> for testing we'll use 5
         var rouletteWheel = new RouletteWheel();
         
         //Even when spinning in succession, we will get the correct result.
-        rouletteWheel.start(5);
+        rouletteWheel.start(id);
         
-        //show dialog if they have won something / lost something.
+        
 
     }
 
@@ -269,23 +304,57 @@ class Roulette extends Component {
                                 <GridItem xs={12} sm={12} md={6}>
                                     <Card>
                                         <CardBody>
-                                            <Button color="primary" onClick={this.rollWheel}>Test</Button>
-                                        { /*<InputLabel htmlFor="age-simple">Choice</InputLabel>
-                                        <Select
-                                            value=""
-                                            onChange={this.handleChange}
-                                            inputProps={{
-                                            name: 'choice',
-                                            id: 'choice-simple',
+                                            <Formik
+                                            initialValues ={{ bet : 0, choices : []}}
+                                            onSubmit={(values, actions) => {
+                                                this.startGame(values);
                                             }}
-                                        >
-                                            <MenuItem value="">
-                                            <em>None</em>
-                                            </MenuItem>
-                                            <MenuItem value={10}>Ten</MenuItem>
-                                            <MenuItem value={20}>Twenty</MenuItem>
-                                            <MenuItem value={30}>Thirty</MenuItem>
-                                        </Select> */}
+                                            render={({
+                                              values,
+                                              handleChange,
+                                              handleSubmit
+                                            }) => ( 
+                                            <div>
+                                                <form onSubmit={handleSubmit}>
+                                                    <Button color="primary" onClick={this.rollWheel}>Test</Button>
+                                                    <FormControl className={classes.formControl}>
+                                                        <InputLabel className={classes.textWhite}>Choices</InputLabel>
+                                                        <Select
+                                                            name="choices"
+                                                            className={classes.textWhite}
+                                                            multiple
+                                                            value={values.choices}
+                                                            onChange={handleChange}
+                                                            input={<Input id="select-multiple-chip" />}
+                                                            renderValue={selected => (
+                                                            <div className={classes.chips}>
+                                                                {selected.map(value => (
+                                                                <Chip key={value} label={value} className={classes.chip} />
+                                                                ))}
+                                                            </div>
+                                                            )}
+                                                        >
+                                                            {numbers.map(number => (
+                                                            <MenuItem key={number} value={number}>
+                                                                {number}
+                                                            </MenuItem>
+                                                            ))}
+                                                        </Select>
+                                                    </FormControl>
+                                                    <CustomInput
+                                                        labelText="Bet Amount"
+                                                        id="bet"
+                                                        formControlProps={{
+                                                            fullWidth: true
+                                                        }}
+                                                        value={values.bet}
+                                                        onChange={handleChange}
+                                                    />
+                                                    <Button type="submit" color="primary">Bet</Button>
+                                                </form>
+                                            </div>
+                                            )}
+                                            />
                                         </CardBody>
                                     </Card>
                                 </GridItem>
@@ -299,4 +368,12 @@ class Roulette extends Component {
     }
 }
 
-export default withStyles(styles)(Roulette);
+const mapStateToProps = state => {
+    //TODO : rename state.account to state.auth.
+    return {
+        roulette : state.roulette
+    };
+  }
+
+
+export default withRouter(connect(mapStateToProps, { rouletteRoll })(withStyles(styles)(Roulette)));
