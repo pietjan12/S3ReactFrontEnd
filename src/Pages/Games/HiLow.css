@@ -1,9 +1,14 @@
 .marginBottomChoice{
-    margin-bottom: 200px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background-color: #fff;
+    width: 100%;
+    height: 2px;
 }
 
 @media only screen and (max-width: 600px) {
     .marginBottomChoice{
-        margin-bottom: 75px;
+        margin-bottom: 30px;
+        margin-top: 30px;
     }
 }

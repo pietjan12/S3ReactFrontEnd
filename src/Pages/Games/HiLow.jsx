@@ -10,6 +10,7 @@ import Card from "Components/Card/Card.jsx";
 import CardHeader from "Components/Card/CardHeader.jsx";
 import GridItem from "Components/Grid/GridItem.jsx";
 import CardBody from "Components/Card/CardBody.jsx";
+import CustomInput from "Components/CustomInput/CustomInput.jsx";
 import Button from "Components/CustomButtons/Button.jsx";
 import GridContainer from "Components/Grid/GridContainer.jsx";
 
@@ -44,6 +45,15 @@ const styles = {
         display: "block",
         marginLeft: "auto",
         marginRight: "auto" 
+    },
+    outerWhiteLine: {
+        outline: "2px solid #FFF",
+        width: " 100%"
+    },
+    centerDiv: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     }
 };
 
@@ -95,8 +105,9 @@ class HiLow extends Component {
                                             <Card>
                                                 <CardBody>
                                                     <GridContainer>
+                                                         <div className={classes.outerWhiteLine}>
                                                         <GridItem xs={12} sm={12} md={12}>
-                                                            <div onClick={() => this.ChangeChoice("higher")}>
+                                                            <div onClick={() => this.ChangeChoice("higher")} className={classes.centerDiv}>
                                                                 <img className={classes.choiceImageStyle} src={higher} alt="higher"/>
                                                             </div>
                                                         </GridItem>
@@ -106,6 +117,7 @@ class HiLow extends Component {
                                                                 <img className={classes.choiceImageStyle} src={lower} alt="lower"/>
                                                             </div>
                                                         </GridItem>
+                                                        </div>
                                                     </GridContainer>
                                                 </CardBody>
                                             </Card>
@@ -114,6 +126,24 @@ class HiLow extends Component {
                                         <GridItem xs={12} sm={12} md={12}>
                                             <Card>
                                                 <CardBody>
+                                                    <CustomInput
+                                                        labelText="Current Choice"
+                                                        id="choice"
+                                                        formControlProps={{
+                                                            fullWidth: true
+                                                        }}
+                                                        value={this.state.choice}
+                                                        />
+                                                    <CustomInput
+                                                        labelText="Bet Amount"
+                                                        id="bet"
+                                                        formControlProps={{
+                                                            fullWidth: true
+                                                        }}
+                                                        value={this.state.betamount}
+                                                    />
+                                                    <Button type="submit" color="primary">Bet</Button>
+                                                    
                                                     <h1 className={classes.whiteColor}> hier komt higher lower bet gedeelte en "submit" knop ofzo</h1>
                                                 </CardBody>
                                             </Card>

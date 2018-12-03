@@ -41,7 +41,11 @@ const styles = {
         marginBottom: "30px"
     },
     linkWhite: {
-        color: "#FFF"
+        color: "#FFF",
+        '&:hover': {
+            color: "#fff",
+            textDecoration: "none"  
+        }
     }
 };
 
