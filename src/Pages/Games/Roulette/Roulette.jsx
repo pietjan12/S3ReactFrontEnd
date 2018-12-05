@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import Input from '@material-ui/core/Input';
+import AddAlert from "@material-ui/icons/AddAlert";
 
 import Header from 'Components/Header';
 import Footer from 'Components/Footer';
@@ -18,6 +19,7 @@ import CustomInput from "Components/CustomInput/CustomInput.jsx";
 import CardBody from "Components/Card/CardBody.jsx";
 import Button from "Components/CustomButtons/Button.jsx";
 import GridContainer from "Components/Grid/GridContainer.jsx";
+import Snackbar from "Components/Snackbar/Snackbar.jsx";
 
 import { RouletteWheel } from './Roulette.js';
 import './Roulette.css';
@@ -51,32 +53,53 @@ const styles = {
 }
 
 class Roulette extends Component {
+    constructor() {
+        super();
 
-    startGame(values) {
-        //split ints and strings choices and pass them seperately to rest API.
-        var intChoices = values.choices.filter(function(item) {
-            return (parseInt(item) == item);
-        });
-    
-        var stringChoices = values.choices.filter(function(item) {
-            return intChoices.indexOf(item) === -1;
-        });
-
-        this.props.rouletteRoll(values.bet, intChoices, stringChoices);
-        //redux call
-        //this.rollWheel(5);
+        this.state = {
+            notification: false,
+            message: ""
+        }
     }
 
+    showNotification(message) {
+        this.setState(
+            {notification: true, message: message}
+        );
+    }
 
-    rollWheel(id) {
-        //start the visual roulette spin with id returned from redux -> for testing we'll use 5
+    startGame(values) {
+        //get value from select input, could be int or string
+        var intChoice = -1;
+        var stringChoice = "";
+
+        if(Number.isInteger(values.choices)) {
+            intChoice = values.choices;
+        } else {
+            stringChoice = values.choices;
+        }
+
+        this.props.rouletteRoll(values.bet, intChoice, stringChoice).then(res => {
+            this.rollWheel(this.props.roulette.rolledNumber);
+        });
+    }
+
+    rollWheel(id) {  
         var rouletteWheel = new RouletteWheel();
-        
-        //Even when spinning in succession, we will get the correct result.
         rouletteWheel.start(id);
-        
-        
 
+        //wait for 6 seconds, not the cleanest solution but it is the fastest...
+        setTimeout(function() { 
+            //After 6 seconds show a dialog with the result.
+            var message = "";
+            if(this.props.roulette.won) {
+                message = "Congratulations, you've won " + this.props.roulette.wonTokens + " Tokens!";
+            } else {
+                message = "Unlucky, better luck next time!"
+            }
+
+            this.showNotification(message);
+        }.bind(this), 6000)
     }
 
     render() {
@@ -316,21 +339,17 @@ class Roulette extends Component {
                                             }) => ( 
                                             <div>
                                                 <form onSubmit={handleSubmit}>
-                                                    <Button color="primary" onClick={this.rollWheel}>Test</Button>
                                                     <FormControl className={classes.formControl}>
                                                         <InputLabel className={classes.textWhite}>Choices</InputLabel>
                                                         <Select
                                                             name="choices"
                                                             className={classes.textWhite}
-                                                            multiple
                                                             value={values.choices}
                                                             onChange={handleChange}
                                                             input={<Input id="select-multiple-chip" />}
                                                             renderValue={selected => (
                                                             <div className={classes.chips}>
-                                                                {selected.map(value => (
-                                                                <Chip key={value} label={value} className={classes.chip} />
-                                                                ))}
+                                                                <Chip key={selected} label={selected} className={classes.chip} />
                                                             </div>
                                                             )}
                                                         >
@@ -359,6 +378,15 @@ class Roulette extends Component {
                                     </Card>
                                 </GridItem>
                             </GridContainer>
+                            <Snackbar
+                                place="br"
+                                color="info"
+                                icon={AddAlert}
+                                message={this.state.message}
+                                open={this.state.notification}
+                                closeNotification={() => this.setState({ notification: false })}
+                                close
+                            />
                         </GridContainer>
                         </div>
                     </div>

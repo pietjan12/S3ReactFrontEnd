@@ -29,8 +29,7 @@ class Header extends Component {
                             <Link to="/Games" className="nav-link uppercase">Games</Link>
                         </div>
                     </ul>
-                        {console.log("header user : " + user.user)}
-                    {   
+                        {   
                         user.isAuthenticated ? 
                         <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
                             <Avatar name={user.user}/>
@@ -39,7 +38,7 @@ class Header extends Component {
                         <div className="nav-item justify-content-end w-100">
                             <Link to="/Login"  className="nav-link uppercase">Login</Link>
                         </div>
-                    }
+                        }
                 </div>
             </nav>
         );

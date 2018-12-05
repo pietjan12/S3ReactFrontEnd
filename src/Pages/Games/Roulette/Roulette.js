@@ -42,11 +42,11 @@ export class RouletteWheel {
         }
     }
 
-    start(id) {
+    start(id,) {
         this.resultId = id;
         var indexOfID = this.numbers.indexOf(this.resultId);
 
-        var resultOffset = indexOfID * this.itemsWidth;
+        var resultOffset = (indexOfID * this.itemsWidth) + Math.floor(Math.random() * ((this.itemsWidth / 2) - 5) ) + 5;
         var loops = 3; //+ Math.floor(Math.random() * 3);
         this.totalDistance = (loops * this.totalWidth) + resultOffset;
         this.running = true;
@@ -68,6 +68,7 @@ export class RouletteWheel {
             this.running = false;
             return;
         }
+        
 
         // t = timeFraction
         var t = this.easeOutSine(deltaTime, 0, 1, this.spinTime);

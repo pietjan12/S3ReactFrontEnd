@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
+import MenuItem from '@material-ui/core/MenuItem';
+import Chip from '@material-ui/core/Chip';
+import Input from '@material-ui/core/Input';
+import AddAlert from "@material-ui/icons/AddAlert";
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 import Header from 'Components/Header';
 import Footer from 'Components/Footer';
 import { withRouter } from "react-router";
-
 import Card from "Components/Card/Card.jsx";
 import CardHeader from "Components/Card/CardHeader.jsx";
 import GridItem from "Components/Grid/GridItem.jsx";
@@ -18,6 +25,8 @@ import { connect } from 'react-redux';
 import emptyImage from 'img/CardImages/leeg.png'
 import higher from 'img/GameImages/hilow/higher.png'
 import lower from 'img/GameImages/hilow/lower.png'
+
+import { Formik } from 'formik';
 
 import './HiLow.css'
 
@@ -104,47 +113,50 @@ class HiLow extends Component {
                                         <GridItem xs={12} sm={12} md={12}>
                                             <Card>
                                                 <CardBody>
-                                                    <GridContainer>
-                                                         <div className={classes.outerWhiteLine}>
-                                                        <GridItem xs={12} sm={12} md={12}>
-                                                            <div onClick={() => this.ChangeChoice("higher")} className={classes.centerDiv}>
-                                                                <img className={classes.choiceImageStyle} src={higher} alt="higher"/>
-                                                            </div>
-                                                        </GridItem>
-                                                        <div className="marginBottomChoice" />
-                                                        <GridItem xs={12} sm={12} md={12}>
-                                                            <div onClick={() => this.ChangeChoice("lower")}>
-                                                                <img className={classes.choiceImageStyle} src={lower} alt="lower"/>
-                                                            </div>
-                                                        </GridItem>
+                                                    <Formik
+                                                    initialValues ={{ choice : "", bet: 0}}
+                                                    onSubmit={(values, actions) => {
+                                                        console.log("values");
+                                                    }}
+                                                    render={({
+                                                    values,
+                                                    handleChange,
+                                                    handleSubmit
+                                                    }) => ( 
+                                                        <div>
+                                                            <form onSubmit={handleChange}>
+                                                                <FormControl className={classes.formControl}>
+                                                                    <InputLabel className={classes.whiteColor}>Higher / Lower</InputLabel>
+                                                                    <Select
+                                                                        name="choice"
+                                                                        className={classes.whiteColor}
+                                                                        value={values.choice}
+                                                                        onChange={handleChange}
+                                                                        input={<Input id="select-multiple-chip" />}
+                                                                        renderValue={selected => (
+                                                                        <div className={classes.chips}>
+                                                                            <Chip key={selected} label={selected} className={classes.chip} />
+                                                                        </div>
+                                                                        )}
+                                                                    >
+                                                                        <MenuItem key="higher" value="higher">Higher</MenuItem>
+                                                                        <MenuItem key="lower" value="lower">lower</MenuItem>
+                                                                    </Select>
+                                                                    <CustomInput
+                                                                        labelText="Bet Amount"
+                                                                        id="bet"
+                                                                        formControlProps={{
+                                                                            fullWidth: true
+                                                                        }}
+                                                                        value={values.bet}
+                                                                        onChange={handleChange}
+                                                                    />
+                                                                    <Button type="submit" color="primary">Bet</Button>
+                                                                </FormControl>
+                                                            </form>
                                                         </div>
-                                                    </GridContainer>
-                                                </CardBody>
-                                            </Card>
-                                           
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={12}>
-                                            <Card>
-                                                <CardBody>
-                                                    <CustomInput
-                                                        labelText="Current Choice"
-                                                        id="choice"
-                                                        formControlProps={{
-                                                            fullWidth: true
-                                                        }}
-                                                        value={this.state.choice}
-                                                        />
-                                                    <CustomInput
-                                                        labelText="Bet Amount"
-                                                        id="bet"
-                                                        formControlProps={{
-                                                            fullWidth: true
-                                                        }}
-                                                        value={this.state.betamount}
+                                                    )}
                                                     />
-                                                    <Button type="submit" color="primary">Bet</Button>
-                                                    
-                                                    <h1 className={classes.whiteColor}> hier komt higher lower bet gedeelte en "submit" knop ofzo</h1>
                                                 </CardBody>
                                             </Card>
                                         </GridItem>

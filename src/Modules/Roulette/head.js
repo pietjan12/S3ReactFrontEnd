@@ -13,9 +13,9 @@ export default (state = [], action) => {
     }
 };
 
-export const rouletteRoll = (bet, intChoices, stringChoices) => dispatch => {
+export const rouletteRoll = (bet, intChoice, stringChoice) => dispatch => {
     return new Promise((resolve, reject) => {
-        return apiCall('post', `${gamblingUrl}/roulette`, {bet, intChoices, stringChoices})
+        return apiCall('post', `${gamblingUrl}/games/roulette`, {bet, intChoice, stringChoice})
             .then((req) => {
                 dispatch({
                     type: PLAY_ROULETTE,
