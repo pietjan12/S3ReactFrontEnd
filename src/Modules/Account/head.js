@@ -1,5 +1,5 @@
 import { FETCH_USER, REGISTER } from '../types'
-import { bankUrl, inventoryUrl } from '../serverconstants'
+import { bankUrl } from '../serverconstants'
 import { apiCall } from '../../Services/api';
 
 //user state

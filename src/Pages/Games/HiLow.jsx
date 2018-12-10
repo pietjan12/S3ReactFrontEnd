@@ -14,20 +14,19 @@ import Header from 'Components/Header';
 import Footer from 'Components/Footer';
 import { withRouter } from "react-router";
 import Card from "Components/Card/Card.jsx";
-import CardHeader from "Components/Card/CardHeader.jsx";
 import GridItem from "Components/Grid/GridItem.jsx";
 import CardBody from "Components/Card/CardBody.jsx";
 import CustomInput from "Components/CustomInput/CustomInput.jsx";
 import Button from "Components/CustomButtons/Button.jsx";
 import GridContainer from "Components/Grid/GridContainer.jsx";
-
-import { connect } from 'react-redux';
-import emptyImage from 'img/CardImages/leeg.png'
-import higher from 'img/GameImages/hilow/higher.png'
-import lower from 'img/GameImages/hilow/lower.png'
+import CardHeader from "Components/Card/CardHeader.jsx";
+import Snackbar from "Components/Snackbar/Snackbar.jsx";
 
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { HiLowRoll } from 'Modules/HiLow/head';
 
+import cardImages from '../../Services/CardImageHelper'
 import './HiLow.css'
 
 const styles = {
@@ -71,18 +70,38 @@ class HiLow extends Component {
         super();
 
         this.state = {
-            choice : "",
-            betamount : 0
+            notification: false,
+            message: ""
         }
 
-        this.ChangeChoice = this.ChangeChoice.bind(this);
+        if(!localStorage.getItem("lastCard")) {
+            localStorage.setItem("lastCard", 5);
+        }
     }
 
-    ChangeChoice(choice) {
-        //Change state
+    startGame(values) {
+        var { choice, bet } = values;
+        if(choice != "" && bet > 0) {
+            var higher = choice == "higher";
+
+            this.props.HiLowRoll(bet, higher, localStorage.getItem("lastCard")).then(res => {
+                localStorage.setItem("lastCard", this.props.hilow.rolledNumber);
+
+                var message = "";
+                if(this.props.hilow.won) {
+                    message = "Congratulations, you've won " + this.props.hilow.wonTokens + " Tokens!";
+                } else {
+                    message = "Unlucky, better luck next time!"
+                }
+    
+                this.showNotification(message);
+            });
+        }
+    }
+
+    showNotification(message) {
         this.setState(
-            { Choice : choice},
-            () => console.log(this.state.Choice)
+            {notification: true, message: message}
         );
     }
 
@@ -102,9 +121,12 @@ class HiLow extends Component {
                                 <GridItem xs={12} sm={12} md={6}>
                                     <GridContainer>
                                        <Card>
-                                           <CardBody>
-                                                <img className={classes.cardImageStyle} src={emptyImage} alt="cardImage"/>
-                                           </CardBody>
+                                            <CardHeader color="primary">
+                                                <h4 className={classes.cardTitleWhite}>Current Card</h4>
+                                            </CardHeader>
+                                            <CardBody>
+                                                    <img className={classes.cardImageStyle} src={cardImages[localStorage.getItem("lastCard")]} alt="cardImage"/>
+                                            </CardBody>
                                        </Card>
                                     </GridContainer>
                                 </GridItem>
@@ -116,7 +138,7 @@ class HiLow extends Component {
                                                     <Formik
                                                     initialValues ={{ choice : "", bet: 0}}
                                                     onSubmit={(values, actions) => {
-                                                        console.log("values");
+                                                        this.startGame(values);
                                                     }}
                                                     render={({
                                                     values,
@@ -124,7 +146,7 @@ class HiLow extends Component {
                                                     handleSubmit
                                                     }) => ( 
                                                         <div>
-                                                            <form onSubmit={handleChange}>
+                                                            <form onSubmit={handleSubmit}>
                                                                 <FormControl className={classes.formControl}>
                                                                     <InputLabel className={classes.whiteColor}>Higher / Lower</InputLabel>
                                                                     <Select
@@ -163,6 +185,15 @@ class HiLow extends Component {
                                     </GridContainer>
                                 </GridItem>
                             </GridContainer>
+                            <Snackbar
+                                place="br"
+                                color="info"
+                                icon={AddAlert}
+                                message={this.state.message}
+                                open={this.state.notification}
+                                closeNotification={() => this.setState({ notification: false })}
+                                close
+                            />
                         </GridContainer>
                     </div>
                 </div>
@@ -173,9 +204,11 @@ class HiLow extends Component {
 }
 
 const mapStateToProps = state => {
+    //TODO : rename state.account to state.auth.
     return {
-        
+        hilow : state.hilow
     };
-}
+  }
 
-export default withRouter(connect(mapStateToProps, {})(withStyles(styles)(HiLow)));
+
+export default withRouter(connect(mapStateToProps, { HiLowRoll })(withStyles(styles)(HiLow)));

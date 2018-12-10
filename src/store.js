@@ -5,15 +5,17 @@ import thunk from 'redux-thunk';
 import casesHead from 'Modules/Cases/head';
 import authorizationHead from 'Modules/Authentication/head';
 import usersHead from 'Modules/Account/head';
-import inventoryHead from 'Modules/Inventory/head'
-import rouletteHead from 'Modules/Roulette/head'
+import inventoryHead from 'Modules/Inventory/head';
+import rouletteHead from 'Modules/Roulette/head';
+import hilowHead from 'Modules/HiLow/head';
 
 const rootReducer = combineReducers({
   cases: casesHead,
   account: authorizationHead,
   users: usersHead,
   inventory : inventoryHead,
-  roulette : rouletteHead
+  roulette : rouletteHead,
+  hilow : hilowHead
 });
 
 const store = createStore(

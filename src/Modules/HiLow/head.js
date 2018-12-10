@@ -1,23 +1,23 @@
-import { PLAY_ROULETTE } from '../types'
+import { PLAY_HILOW } from '../types'
 import { gamblingUrl } from '../serverconstants'
 import { apiCall } from '../../Services/api';
 
 //reducer
 export default (state = [], action) => {
     switch (action.type) {
-      case PLAY_ROULETTE: 
+      case PLAY_HILOW: 
         return action.payload;
       default:
         return state;
     }
 };
 
-export const rouletteRoll = (bet, intChoice, stringChoice) => dispatch => {
+export const HiLowRoll = (bet, choice, currentCardNumber) => dispatch => {
     return new Promise((resolve, reject) => {
-        return apiCall('post', `${gamblingUrl}/games/roulette`, {bet, intChoice, stringChoice})
+        return apiCall('post', `${gamblingUrl}/games/hilow`, {bet, choice, currentCardNumber})
             .then((req) => {
                 dispatch({
-                    type: PLAY_ROULETTE,
+                    type: PLAY_HILOW,
                     payload: req
                 });
                 resolve();

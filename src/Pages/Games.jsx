@@ -65,9 +65,7 @@ class Games extends Component {
                             <GridItem xs={12} sm={12} md={3}>
                                 <Card>
                                 <CardAvatar profile>
-                                    <a href="#">
                                     <img src={cardImage} alt="hi/low" />
-                                    </a>
                                 </CardAvatar>
                                 <CardHeader color="primary">
                                     <h4 className={classes.cardTitleWhite}>Higher / Lower</h4>
@@ -83,9 +81,7 @@ class Games extends Component {
                             <GridItem xs={12} sm={12} md={3}>
                                 <Card>
                                 <CardAvatar profile>
-                                    <a href="#">
                                     <img src={rouletteImage} alt="Roulette" />
-                                    </a>
                                 </CardAvatar>
                                 <CardHeader color="primary">
                                     <h4 className={classes.cardTitleWhite}>Roulette</h4>

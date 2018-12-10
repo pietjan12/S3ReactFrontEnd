@@ -2,9 +2,7 @@ import React, {Component} from 'react'
 
 import Header from 'Components/Header'
 import LandingSection from './Home/LandingComponent'
-import Footer from 'Components/Footer'
-
-import UserProfile from './Account/UserProfile'
+import Footer from 'Components/Footer'  
 
 class Home extends Component {
 

@@ -6,8 +6,6 @@ import Footer from 'Components/Footer';
 
 import './CaseDetails/CaseDetails.css';
 
-import TestImage from 'img/tempcase.png';
-
 import { connect } from 'react-redux';
 import { fetchCaseByID } from 'Modules/Cases/head';
 

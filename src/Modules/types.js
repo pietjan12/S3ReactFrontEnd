@@ -21,6 +21,7 @@ export const GET_INVENTORY = "GET_INVENTORY";
 export const GET_ACCOUNT = "GET_ACCOUNT";
 export const GET_TOKENS = "GET_TOKENS";
 export const BUY_TOKENS = "BUY_TOKENS";
+
 //GAMBLING GAME CALLS
 export const OPEN_CASE = "OPEN_CASE";
 export const PLAY_HILOW = "PLAY_HILOW";

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 //private route component used to restrict page access to logged in users only.
-const PrivateRoute = ({ component: Component, auth: auth, ...rest }) => (
+const PrivateRoute = ({ component: Component, auth, ...rest }) => (
     <Route
         {...rest}
         render={props =>
