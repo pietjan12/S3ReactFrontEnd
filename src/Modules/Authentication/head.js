@@ -1,6 +1,6 @@
 import { LOGIN } from '../types';
 import { setToken, apiCall } from '../../Services/api';
-import { inventoryUrl } from '../serverconstants'
+import { gamblingUrl } from '../serverconstants'
 
 
 const USER_STATE = {
@@ -27,7 +27,7 @@ export default (state = USER_STATE, action) => {
 
 export const loginUser = (username, password) => dispatch => {
     return new Promise((resolve, reject) => {
-        return apiCall('post', `${inventoryUrl}/login`, {username, password})
+        return apiCall('post', `${gamblingUrl}/login`, {username, password})
             .then((req) => {
                 localStorage.setItem('jwtToken', req.token);
                 setAuthorizationToken(req.token);
