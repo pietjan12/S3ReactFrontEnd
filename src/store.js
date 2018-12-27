@@ -8,6 +8,7 @@ import usersHead from 'Modules/Account/head';
 import inventoryHead from 'Modules/Inventory/head';
 import rouletteHead from 'Modules/Roulette/head';
 import hilowHead from 'Modules/HiLow/head';
+import gamblingHead from 'Modules/GamblingAccount/head';
 
 const rootReducer = combineReducers({
   cases: casesHead,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   users: usersHead,
   inventory : inventoryHead,
   roulette : rouletteHead,
-  hilow : hilowHead
+  hilow : hilowHead,
+  gamblingAccount : gamblingHead
 });
 
 const store = createStore(

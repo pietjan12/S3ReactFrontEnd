@@ -1,7 +1,7 @@
 import { LOGIN } from '../types';
 import { setToken, apiCall } from '../../Services/api';
 import { gamblingUrl } from '../serverconstants'
-
+import jwtDecode from 'jwt-decode';
 
 const USER_STATE = {
     isAuthenticated : false,
@@ -33,7 +33,10 @@ export const loginUser = (username, password) => dispatch => {
                 setAuthorizationToken(req.token);
                 dispatch({
                     type: LOGIN,
-                    payload: username
+                    payload: {
+                        username: username,
+                        id: jwtDecode(req.token).userID
+                    }
                 })
                 resolve(); //API call succeeded
             })

@@ -47,7 +47,7 @@ const styles = {
 class UserProfile extends Component {
   componentWillMount() {
     //fetch user details by username stored in authentication.
-    this.props.fetchUser(this.props.account.user);
+    this.props.fetchUser(this.props.account.user.username);
     this.logout = this.logout.bind(this);
   }
 
@@ -63,7 +63,6 @@ class UserProfile extends Component {
 
   render() {
     const { classes, user } = this.props;
-    console.log(user);
     if(user.length === 0) {
       //return loading screen while redux action finishes.
       return (

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from './Header/Avatar.jsx';
 
+import CustomDropdown from './CustomDropdown/CustomDropdown'
 import LogoImage from 'img/templogo.png';
+import AvatarImage from 'img/tempavatar.png';
 import './Header/Header.css'
+import navbarsStyle from "css/navbarsStyle.jsx";
+
+import withStyles from "@material-ui/core/styles/withStyles";
 
 import { connect } from 'react-redux';
+import { fetchUser } from 'Modules/GamblingAccount/head';
 
 class Header extends Component {
+    componentWillMount() {
+        //fetch user details by username stored in authentication.
+        this.props.fetchUser(this.props.user.user.id);
+    }
+
     render() {
-        const {user} = this.props;
+        const {user, gamblingAccount, classes} = this.props;
         return (
             <nav className="navbar navbar-expand-lg navbar-dark nav-bg">   
                 <img className="navbar-brand logo" src={LogoImage} alt="logo"/>
@@ -31,8 +41,31 @@ class Header extends Component {
                     </ul>
                         {   
                         user.isAuthenticated ? 
-                        <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
-                            <Avatar name={user.user}/>
+                        <ul className="nav navbar-nav ml-auto w-300 justify-content-end dropdown">
+                            <CustomDropdown
+                                right
+                                caret={false}
+                                buttonText={
+                                    <img
+                                    src={AvatarImage}
+                                    className={classes.img}
+                                    alt="profile"
+                                    />
+                                }
+                                buttonProps={{
+                                    className:
+                                    classes.navLink + " " + classes.imageDropdownButton,
+                                    color: "transparent"
+                                }}
+                                dropdownList={[
+                                    <Link to="/Account">
+                                        {user.user.username}
+                                    </Link>,
+                                     <Link to="/Tokens">
+                                        {gamblingAccount.tokens} tokens
+                                     </Link>
+                                ]}
+                            />
                         </ul> 
                         :
                         <div className="nav-item justify-content-end w-100">
@@ -47,11 +80,12 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.account
+        user: state.account,
+        gamblingAccount: state.gamblingAccount
     };
 }
 
 export default connect(
     mapStateToProps,
-    null
-)(Header);
+    {fetchUser}
+)(withStyles(navbarsStyle)(Header));

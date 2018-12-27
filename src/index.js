@@ -18,6 +18,7 @@ import CaseDetails from 'Pages/CaseDetails';
 import Games from 'Pages/Games';
 import HiLow from 'Pages/Games/HiLow'
 import Roulette from 'Pages/Games/Roulette/Roulette.jsx'
+import BuyTokens from 'Pages/BuyTokens';
 
 import { LOGIN } from './Modules/types';
 import jwtDecode from 'jwt-decode';
@@ -33,7 +34,10 @@ if (localStorage.jwtToken) {
     try {
         store.dispatch({
             type: LOGIN,
-            payload : jwtDecode(localStorage.jwtToken)["sub"]
+            payload : {
+                username: jwtDecode(localStorage.jwtToken)["sub"],
+                id: jwtDecode(localStorage.jwtToken)["userID"]
+            }
         });
     } catch (err) {
         store.dispatch({
@@ -56,6 +60,7 @@ ReactDOM.render(
             <Route exact path="/Games" component={Games} />
             <Route exact path="/Games/HighLow" component={HiLow} />
             <Route exact path="/Games/Roulette" component={Roulette} />
+            <Route exact path="/Tokens" component={BuyTokens} />
             </Switch>
         </Provider>
     </Router>,
