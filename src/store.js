@@ -9,6 +9,8 @@ import inventoryHead from 'Modules/Inventory/head';
 import rouletteHead from 'Modules/Roulette/head';
 import hilowHead from 'Modules/HiLow/head';
 import gamblingHead from 'Modules/GamblingAccount/head';
+import caseOpeningHead from 'Modules/CaseOpening/head';
+import itemHead from 'Modules/Item/head';
 
 const rootReducer = combineReducers({
   cases: casesHead,
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
   inventory : inventoryHead,
   roulette : rouletteHead,
   hilow : hilowHead,
+  item : itemHead,
+  caseopening: caseOpeningHead,
   gamblingAccount : gamblingHead
 });
 

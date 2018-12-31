@@ -9,14 +9,14 @@ class CaseListComponent extends Component {
         return (
             <div className="listcontainer">
                 {Cases.map(item => (
-                    <div className="casecontainer" key={item.caseid}>
-                        <Link to={`/Case/`+item.caseid}>
+                    <div className="casecontainer" key={item.id}>
+                        <Link to={`/Case/`+item.id}>
                             <div className="top">
-                                <img src={require(`img/${item.caseavatarurl}`)} className="caseimg" alt="caseimg"/>
+                                <img src={require(`img/CaseImages/${item.image}`)} className="caseimg" alt="caseimg"/>
                             </div>
                             <div className="bottom">
-                                <h3>{item.casename}</h3>
-                                <h4>{item.casedescription}</h4>
+                                <h3>{item.name} - {item.price} Tokens</h3>
+                                <h4>{item.description}</h4>
                             </div> 
                         </Link>
                     </div>

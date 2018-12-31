@@ -42,7 +42,7 @@ export class RouletteWheel {
         }
     }
 
-    start(id,) {
+    start(id) {
         this.resultId = id;
         var indexOfID = this.numbers.indexOf(this.resultId);
 

@@ -4,7 +4,7 @@ import Header from 'Components/Header';
 import Footer from 'Components/Footer';
 import CaseListComponent from './Cases/CaseListComponent';
 import './Cases/Cases.css';
-
+import ReactLoading from 'react-loading';
 import { connect } from 'react-redux';
 import { fetchHotCases } from 'Modules/Cases/head';
 
@@ -15,6 +15,19 @@ class Cases extends Component {
 
     render() {
         const { caselist } = this.props;
+        if(caselist.length === 0 || !Array.isArray(caselist)) {
+            console.log("loading" )
+            //return loading screen while redux action finishes.
+            return (
+                <div>
+                    <Header/>
+                    <div className="outercontainer">
+                        <ReactLoading type="bubbles" color="#fff" height={'50px'} width={'50px'} className="centered"/>
+                    </div>
+                    <Footer/>
+                </div>
+            );
+        } else {
         return (
             <div>   
                 <Header/>
@@ -27,6 +40,7 @@ class Cases extends Component {
                 <Footer/>
             </div>
         );
+        }
     }
 }
 

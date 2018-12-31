@@ -400,7 +400,7 @@ const mapStateToProps = state => {
     return {
         roulette : state.roulette
     };
-  }
+}
 
 
 export default withRouter(connect(mapStateToProps, { rouletteRoll })(withStyles(styles)(Roulette)));

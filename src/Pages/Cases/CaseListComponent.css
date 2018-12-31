@@ -8,6 +8,10 @@
     grid-gap: 8ch;
 }
 
+.casecontainer a {
+    text-decoration: none;
+}
+
 .casecontainer{
     text-align: center;
     border-top-left-radius: 2px;
