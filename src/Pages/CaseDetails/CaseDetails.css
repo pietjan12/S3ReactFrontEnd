@@ -74,6 +74,23 @@
 }
 
 
+.scroll {
+    padding-right: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100% !important;
+    margin-left: 50px;
+    align-items: center;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    /* Firefox scrollbar verbergen*/
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+
 
 @media screen and (max-width: 778px) {
     .contentitem{

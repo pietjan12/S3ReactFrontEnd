@@ -47,7 +47,6 @@ export class CaseRoulette {
 
 
     start(id) {
-        console.log(this.numbers);
         this.el.style.transform = 'translateX(-' + 0 + 'px)';
         this.resultId = id;
         var indexOfID = this.numbers.map(e => e.itemID).indexOf(this.resultId);

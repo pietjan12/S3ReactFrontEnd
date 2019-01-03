@@ -15,7 +15,9 @@ import { fetchUser } from 'Modules/GamblingAccount/head';
 class Header extends Component {
     componentWillMount() {
         //fetch user details by username stored in authentication.
-        this.props.fetchUser(this.props.user.user.id);
+        if(typeof(this.props.user.user.id) !== 'undefined') {
+            this.props.fetchUser(this.props.user.user.id);
+        }
     }
 
     render() {

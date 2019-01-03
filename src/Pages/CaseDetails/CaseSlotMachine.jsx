@@ -38,7 +38,7 @@ const styles = {
         width: "0",
         height: "50px",
         position: "absolute",
-        top: "140px",
+        top: "360px",
         left: "0",
         right: "0",
         margin: "auto",
@@ -123,7 +123,7 @@ class CaseSlotMachine extends Component {
         var count = 0;
 
         for(var i = 0; i < 15; i++) {
-            if(count == 4) {
+            if(count == items.length) {
                 count = 0;
             }
 
